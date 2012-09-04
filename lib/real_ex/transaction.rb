@@ -94,6 +94,12 @@ module RealEx
             c.expdate card.expiry_date
             c.chname card.clean_name
             c.type card.type
+            if card.cvv
+              c.cvn do |a|
+                a.number card.cvv
+                a.pressind 1
+              end
+            end
           end
           r.autosettle :flag => autosettle? ? '1' : '0'
           r.tssinfo do |t|
